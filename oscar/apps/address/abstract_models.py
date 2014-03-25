@@ -269,7 +269,7 @@ class AbstractAddress(models.Model):
             regex = self.POSTCODES_REGEX.get(country_code, None)
             if regex:
                 msg = _("Addresses in %(country)s require a postcode") % {
-                    'country': self.country}
+                    'country': _(self.country.printable_name)}
                 raise exceptions.ValidationError(msg)
 
         if self.postcode and self.country_id:

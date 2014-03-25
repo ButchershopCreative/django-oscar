@@ -160,7 +160,6 @@ class MultiFacetedSearchView(FacetedSearchView):
         Adds details about the facets applied
         """
         extra = super(MultiFacetedSearchView, self).extra_context()
-
         if hasattr(self.form, 'cleaned_data') and 'selected_facets' in self.form.cleaned_data:
             extra['facets_applied'] = []
             for f in self.form.cleaned_data['selected_facets'].split("|"):
