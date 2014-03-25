@@ -57,7 +57,9 @@ class BaseBasketLineFormSet(BaseModelFormSet):
     def _should_delete_form(self, form):
         if super(BaseBasketLineFormSet, self)._should_delete_form(form):
             return True
-        if self.can_delete and 'quantity' in form.cleaned_data:
+        if (self.can_delete
+            and getattr(form, 'cleaned_data', None) is not None
+            and 'quantity' in form.cleaned_data):
             return form.cleaned_data['quantity'] == 0
 
 
